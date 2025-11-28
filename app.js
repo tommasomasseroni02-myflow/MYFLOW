@@ -33,6 +33,16 @@ function serveStaticFile(filePath, res) {
 
 const server = http.createServer((req, res) => {
   const safePath = req.url.split('?')[0];
+  if (safePath === '/env.js') {
+    const env = {
+      SUPABASE_URL: process.env.SUPABASE_URL || '',
+      SUPABASE_ANON_KEY: process.env.SUPABASE_ANON_KEY || ''
+    };
+    res.writeHead(200, { 'Content-Type': 'application/javascript' });
+    res.end(`window.__ENV__ = ${JSON.stringify(env)};`);
+    return;
+  }
+
   const requestPath = safePath === '/' ? '/index.html' : safePath;
   const filePath = path.join(publicDir, requestPath);
 
