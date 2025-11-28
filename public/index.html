@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MYFLOW – Connessioni per Artisti</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero__content">
+      <p class="eyebrow">MYFLOW</p>
+      <h1>Il punto di incontro tra <span>artisti</span> e <span>professionisti</span>.</h1>
+      <p class="lead">Scopri studi, produttori, fotografi, stylist e tutte le figure che servono per il tuo prossimo progetto. Login rapido, mood colorato, esperienza da social.</p>
+      <div class="cta-group">
+        <button class="btn btn-primary" id="artistBtn">Sono un artista</button>
+        <button class="btn btn-secondary" id="providerBtn">Sono un pro</button>
+      </div>
+      <div class="trust-chip">Ispirato alle esperienze scorrevoli di IG e TikTok</div>
+    </div>
+    <div class="hero__visual">
+      <div class="bubble bubble-1"></div>
+      <div class="bubble bubble-2"></div>
+      <div class="bubble bubble-3"></div>
+      <div class="hero__card">
+        <p class="eyebrow">Match veloci</p>
+        <h3>Trova quello che ti serve, vicino a te.</h3>
+        <div class="hero__badges">
+          <span class="pill">Producer</span>
+          <span class="pill">Fotografi</span>
+          <span class="pill">Studi</span>
+          <span class="pill">Stylist</span>
+          <span class="pill">Video</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="panel" id="artistPanel">
+      <div class="panel__header">
+        <div>
+          <p class="eyebrow">Accesso Artisti</p>
+          <h2>Login gratuito e ricerca immediata</h2>
+        </div>
+        <span class="chip">Profilo artista</span>
+      </div>
+      <form class="form" id="artistForm">
+        <div class="grid-2">
+          <label>Nome <input name="firstName" required /></label>
+          <label>Cognome <input name="lastName" required /></label>
+        </div>
+        <div class="grid-2">
+          <label>Nome d'arte <input name="stageName" required /></label>
+          <label>Email o telefono <input name="contact" required /></label>
+        </div>
+        <div class="grid-2">
+          <label>Città di riferimento
+            <select name="city" required>
+              <option value="">Seleziona</option>
+              <option value="Milano">Milano</option>
+              <option value="Roma">Roma</option>
+              <option value="Torino">Torino</option>
+              <option value="Napoli">Napoli</option>
+              <option value="Bologna">Bologna</option>
+            </select>
+          </label>
+          <label>Servizi cercati
+            <select name="service" required>
+              <option value="">Scegli</option>
+              <option value="Producer">Producer</option>
+              <option value="Fotografo">Fotografo</option>
+              <option value="Studio">Studio musicale</option>
+              <option value="Stylist">Stylist</option>
+              <option value="Video">Video maker</option>
+            </select>
+          </label>
+        </div>
+        <button class="btn btn-primary" type="submit">Entra e trova subito</button>
+        <p class="hint">I risultati vengono ordinati come su Airbnb: prima i migliori, poi tutti gli altri. Puoi vederli sulla mappa o in lista.</p>
+      </form>
+    </section>
+
+    <section class="panel" id="providerPanel">
+      <div class="panel__header">
+        <div>
+          <p class="eyebrow">Spazio Pro</p>
+          <h2>Inserisci il tuo profilo e fatti scoprire</h2>
+        </div>
+        <span class="chip chip--accent">Addetto ai lavori</span>
+      </div>
+      <form class="form" id="providerForm">
+        <div class="grid-2">
+          <label>Nome <input name="firstName" required /></label>
+          <label>Cognome <input name="lastName" required /></label>
+        </div>
+        <div class="grid-2">
+          <label>Nome d'arte / studio <input name="stageName" required /></label>
+          <label>Email <input name="email" type="email" required /></label>
+        </div>
+        <div class="grid-2">
+          <label>Ruolo
+            <select name="role" required>
+              <option value="">Scegli</option>
+              <option value="Producer">Producer</option>
+              <option value="Fotografo">Fotografo</option>
+              <option value="Studio">Studio musicale</option>
+              <option value="Stylist">Stylist</option>
+              <option value="Video">Video maker</option>
+            </select>
+          </label>
+          <label>Rating iniziale (0-5) <input name="rating" type="number" min="0" max="5" step="0.1" value="4.5" required /></label>
+        </div>
+        <div class="grid-2">
+          <label>Portofolio (link audio/video/foto) <input name="portfolio" placeholder="https://" /></label>
+          <label>Contatto rapido (tel o IG) <input name="contact" placeholder="+39... / @username" required /></label>
+        </div>
+        <div class="grid-2">
+          <label>Posizione esatta (se hai uno studio)
+            <input name="address" placeholder="Via, città" />
+          </label>
+          <label>Macro area operativa
+            <select name="city" required>
+              <option value="">Seleziona</option>
+              <option value="Milano">Milano</option>
+              <option value="Roma">Roma</option>
+              <option value="Torino">Torino</option>
+              <option value="Napoli">Napoli</option>
+              <option value="Bologna">Bologna</option>
+            </select>
+          </label>
+        </div>
+        <div>
+          <label>Carica foto di profilo (URL) <input name="photo" placeholder="https://" /></label>
+        </div>
+        <button class="btn btn-secondary" type="submit">Pubblica il profilo</button>
+        <p class="hint">Tutto quello che inserisci sarà visibile agli artisti per creare connessioni reali.</p>
+      </form>
+    </section>
+
+    <section class="panel panel--wide">
+      <div class="panel__header">
+        <div>
+          <p class="eyebrow">Esplora</p>
+          <h2>Servizi intorno a te</h2>
+        </div>
+        <div class="view-switch">
+          <button class="pill" id="mapToggle">Mappa</button>
+          <button class="pill pill--active" id="listToggle">Lista</button>
+        </div>
+      </div>
+      <div class="filters">
+        <label>Filtra per ruolo
+          <select id="filterRole">
+            <option value="">Tutti</option>
+            <option value="Producer">Producer</option>
+            <option value="Fotografo">Fotografo</option>
+            <option value="Studio">Studio musicale</option>
+            <option value="Stylist">Stylist</option>
+            <option value="Video">Video maker</option>
+          </select>
+        </label>
+        <label>Ordina
+          <select id="sortBy">
+            <option value="rating">Dal migliore</option>
+            <option value="distance">Più vicino</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="map-list" id="mapView" aria-hidden="true">
+        <div class="map" id="map">
+          <div class="map__grid"></div>
+          <div class="map__legend">
+            <span class="pill pill--mini">Artista</span>
+            <span class="pill pill--mini pill--accent">Pro</span>
+          </div>
+        </div>
+        <div class="map__sidebar" id="mapSidebar"></div>
+      </div>
+
+      <div class="cards" id="listView"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>MYFLOW – Costruito per artisti, pensato per collaborare. Layout colorato, scrollabile, facile da capire.</p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
