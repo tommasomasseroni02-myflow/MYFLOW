@@ -1,43 +1,57 @@
-// Webapp di base per iniziare a usare Codex/Copilot.
-// Da qui potremo costruire tutta la piattaforma per artisti, producer e videomaker.
+const http = require('http');
+const path = require('path');
+const fs = require('fs');
 
-console.log("Benvenuto nel tuo progetto! 🎧");
+const publicDir = path.join(__dirname, 'public');
+const port = process.env.PORT || 3000;
 
-// Modello esempio di come potresti strutturare i tuoi utenti (da espandere con Codex)
-const artists = [
-  {
-    id: 1,
-    name: "Artista di esempio",
-    genres: ["Rap", "Trap"],
-    city: "Milano",
-    lookingFor: ["Producer", "Videomaker"]
-  }
-];
+const mimeTypes = {
+  '.html': 'text/html',
+  '.css': 'text/css',
+  '.js': 'application/javascript',
+  '.png': 'image/png',
+  '.jpg': 'image/jpeg',
+  '.svg': 'image/svg+xml',
+  '.ico': 'image/x-icon',
+  '.woff2': 'font/woff2'
+};
 
-console.log("Artisti caricati:", artists);
+function serveStaticFile(filePath, res) {
+  fs.readFile(filePath, (err, data) => {
+    if (err) {
+      res.writeHead(404);
+      res.end('Not Found');
+      return;
+    }
 
-// Funzione placeholder — Codex potrà ampliarla
-function registerArtist(name, genres, city, lookingFor) {
-  const newArtist = {
-    id: artists.length + 1,
-    name,
-    genres,
-    city,
-    lookingFor
-  };
-
-  artists.push(newArtist);
-  return newArtist;
+    const ext = path.extname(filePath).toLowerCase();
+    const contentType = mimeTypes[ext] || 'application/octet-stream';
+    res.writeHead(200, { 'Content-Type': contentType });
+    res.end(data);
+  });
 }
 
-// Esempio di utilizzo
-const example = registerArtist("Nuovo Artista", ["Pop"], "Roma", ["Producer"]);
-console.log("Nuovo artista registrato:", example);
+const server = http.createServer((req, res) => {
+  const safePath = req.url.split('?')[0];
+  const requestPath = safePath === '/' ? '/index.html' : safePath;
+  const filePath = path.join(publicDir, requestPath);
 
-// Da qui Codex può:
-// - creare il backend Express
-// - aggiungere API
-// - creare database
-// - generare frontend HTML/CSS/JS
-// - costruire login / profili / ricerca
-// - trasformarlo in una webapp completa
+  if (!filePath.startsWith(publicDir)) {
+    res.writeHead(403);
+    res.end('Forbidden');
+    return;
+  }
+
+  fs.stat(filePath, (err, stats) => {
+    if (err || !stats.isFile()) {
+      res.writeHead(404);
+      res.end('Not Found');
+      return;
+    }
+    serveStaticFile(filePath, res);
+  });
+});
+
+server.listen(port, () => {
+  console.log(`MYFLOW pronto su http://localhost:${port}`);
+});
