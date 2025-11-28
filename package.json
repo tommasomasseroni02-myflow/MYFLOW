@@ -4,6 +4,7 @@
   "description": "Sito demo per connettere artisti e professionisti",
   "main": "app.js",
   "scripts": {
+    "build": "echo 'Static build - nothing to compile'",
     "start": "node app.js"
   },
   "license": "MIT"
