@@ -40,6 +40,17 @@
   </header>
 
   <main class="layout">
+    <div class="panel">
+      <div class="panel__header">
+        <div>
+          <p class="eyebrow">Accesso</p>
+          <h2>Gestisci la tua sessione</h2>
+        </div>
+        <button class="pill" id="logoutBtn" type="button">Logout</button>
+      </div>
+      <p class="hint" id="sessionStatus"></p>
+    </div>
+
     <section class="panel" id="artistPanel">
       <div class="panel__header">
         <div>
@@ -48,6 +59,7 @@
         </div>
         <span class="chip">Profilo artista</span>
       </div>
+      <p class="hint" id="artistStatus"></p>
       <form class="form" id="artistForm">
         <div class="grid-2">
           <label>Nome <input name="firstName" required /></label>
@@ -55,7 +67,7 @@
         </div>
         <div class="grid-2">
           <label>Nome d'arte <input name="stageName" required /></label>
-          <label>Email o telefono <input name="contact" required /></label>
+          <label>Email per login magic link <input name="contact" type="email" required /></label>
         </div>
         <div class="grid-2">
           <label>Città di riferimento
@@ -92,6 +104,7 @@
         </div>
         <span class="chip chip--accent">Addetto ai lavori</span>
       </div>
+      <p class="hint" id="providerStatus"></p>
       <form class="form" id="providerForm">
         <div class="grid-2">
           <label>Nome <input name="firstName" required /></label>
@@ -190,6 +203,7 @@
     <p>MYFLOW – Costruito per artisti, pensato per collaborare. Layout colorato, scrollabile, facile da capire.</p>
   </footer>
 
-  <script src="main.js"></script>
+  <script src="/env.js"></script>
+  <script type="module" src="main.js"></script>
 </body>
 </html>
